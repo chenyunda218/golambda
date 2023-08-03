@@ -41,3 +41,7 @@ func (m MayBe[T]) Nothing(f func()) MayBe[T] {
 	}
 	return m
 }
+
+func Reference[T any](t T) *T {
+	return &t
+}
