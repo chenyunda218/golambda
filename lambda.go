@@ -28,16 +28,16 @@ type MayBe[T any] struct {
 	Data *T `json:"data"`
 }
 
-func (m MayBe[T]) Just(f func (data T)) MayBe[T] {
-  if m.Data != nil {
-    f(*m.Data)
-  }
-  return m
+func (m MayBe[T]) Just(f func(data T)) MayBe[T] {
+	if m.Data != nil {
+		f(*m.Data)
+	}
+	return m
 }
 
-func (m MayBe[T]) Nothing(f func ()) MayBe[T] {
-  if m.Data == nil {
-    f()
-  }
-  return m
+func (m MayBe[T]) Nothing(f func()) MayBe[T] {
+	if m.Data == nil {
+		f()
+	}
+	return m
 }
