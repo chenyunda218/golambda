@@ -46,6 +46,10 @@ func (m MayBe[T]) Nothing(f func()) MayBe[T] {
 	return m
 }
 
+func (m MayBe[T]) Value() *T {
+  return m.Data
+}
+
 func Reference[T any](t T) *T {
 	return &t
 }
