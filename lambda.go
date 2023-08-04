@@ -47,9 +47,20 @@ func (m MayBe[T]) Nothing(f func()) MayBe[T] {
 }
 
 func (m MayBe[T]) Value() *T {
-  return m.Data
+	return m.Data
 }
 
 func Reference[T any](t T) *T {
 	return &t
+}
+
+func Convert[A, B any](data A, converter func(A) B) B {
+	return converter(data)
+}
+
+func ConvertMayBe[A, B any](m MayBe[A], converter func(A) B) MayBe[B] {
+	if m.Data == nil {
+		return MayBe[B]{}
+	}
+	return MayBe[B]{Data: Reference(converter(*m.Data))}
 }
