@@ -24,8 +24,8 @@ func ForEach[T any](slice []T, operation func(index int, s *T)) {
 	}
 }
 
-func NewMayBe[T any](d T) MayBe[T] {
-	return MayBe[T]{Data: &d}
+func NewMayBe[T any](d *T) MayBe[T] {
+	return MayBe[T]{Data: d}
 }
 
 type MayBe[T any] struct {
