@@ -58,9 +58,9 @@ func Convert[A, B any](data A, converter func(A) B) B {
 	return converter(data)
 }
 
-func ConvertMayBe[A, B any](m MayBe[A], converter func(A) B) MayBe[B] {
+func ConvertMayBe[A, B any](m MayBe[A], converter func(*A) *B) MayBe[B] {
 	if m.Data == nil {
 		return MayBe[B]{}
 	}
-	return MayBe[B]{Data: Reference(converter(*m.Data))}
+	return MayBe[B]{Data: converter(m.Data)}
 }
