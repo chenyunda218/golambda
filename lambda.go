@@ -1,7 +1,7 @@
 package golambda
 
 func Map[I any, O any](slice []I, converter func(index int, m I) O) []O {
-	var output []O
+	var output []O = make([]O, 0)
 	for index, value := range slice {
 		output = append(output, converter(index, value))
 	}
@@ -9,7 +9,7 @@ func Map[I any, O any](slice []I, converter func(index int, m I) O) []O {
 }
 
 func Filter[T any](slice []T, filter func(index int, s T) bool) []T {
-	var output []T
+	var output []T = make([]T, 0)
 	for index, value := range slice {
 		if filter(index, value) {
 			output = append(output, value)
